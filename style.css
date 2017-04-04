@@ -54,9 +54,9 @@ color:red;
 text-align:left
 }
 #img{
-width:17px;
+width:30px;
 border:none;
-height:17px;
+height:30px;
 margin-bottom:91px
 }
 .abcd{
@@ -74,6 +74,4 @@ color:red
 }
 #filediv {
 	padding: 20px;
-} 
-
-
+}

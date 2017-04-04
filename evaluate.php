@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<title>Upload Multiple Images Using jquery and PHP</title>
-		<!-------Including jQuery from Google ------>
+		<!--Including jQuery from Google ------>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="script.js"></script>
-		<!------- Including CSS File ------>
+		<!-- Including CSS File ------>
 		<link rel="stylesheet" type="text/css" href="style.css">
 
 		 <!-- Latest compiled and minified CSS -->
@@ -20,9 +20,13 @@
 		<link href='//fonts.googleapis.com/css?family=Spirax' rel='stylesheet'>
 		<style>
 			h2 {
-	    			font-family: 'Spirax';
-				font-size: 40px;
+	       font-family: 'Spirax';
+			   font-size: 40px;
 			}
+      #image_upload {
+        width: 200px;
+        padding: 15px;
+      }
 		</style>
 	</head>
 	<body>
@@ -30,23 +34,23 @@
 		<hr>
 		<div align="center" id="maindiv">
 			<div id="formdiv">
-				<form enctype="multipart/form-data" action="" method="post">
-					Upload Image for Captioning
-					<br>
-					<div id="filediv"><input name="file[]" type="file" id="file"/></div>
-					<br>
-					<button type="button" id="add_more" class="btn btn-info">
-						<span class="glyphicon glyphicon-plus"></span>
-						Add More Files
-					</button>
-					<!-- input type="submit" value="Upload File" name="submit" id="upload" class="btn btn-info" /> -->
-					<button type="submit" id="upload" class="btn btn-info" name="submit">
-						<span class="glyphicon glyphicon-upload"></span>
-						Upload
-					</button>
-				</form>
-				<!--- Including PHP Script here ------>
-				<?php include "upload.php"; ?>
+        <h5> Please wait, while we caption your images </h5>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped active" role="progressbar"
+          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+          </div>
+        </div>
+        <?php
+          //execute eval.lua
+          $cmd = "/bin/sh /home/akanksha/neuraltalk2/execute_eval.sh";
+          exec($cmd, $output, $return);
+					print_r($output);
+          if (!$return) {
+            echo "Captioning Successfully Completed";
+          } else {
+            echo "ERROR!";
+          }
+        ?>
 			</div>
 		</div>
 	</body>

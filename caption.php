@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<title>Upload Multiple Images Using jquery and PHP</title>
-		<!-------Including jQuery from Google ------>
+		<!--Including jQuery from Google ------>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="script.js"></script>
-		<!------- Including CSS File ------>
+		<!-- Including CSS File ------>
 		<link rel="stylesheet" type="text/css" href="style.css">
 
 		 <!-- Latest compiled and minified CSS -->
@@ -20,9 +20,13 @@
 		<link href='//fonts.googleapis.com/css?family=Spirax' rel='stylesheet'>
 		<style>
 			h2 {
-	    			font-family: 'Spirax';
-				font-size: 40px;
+	       font-family: 'Spirax';
+			   font-size: 40px;
 			}
+      #image_upload {
+        width: 200px;
+        padding: 15px;
+      }
 		</style>
 	</head>
 	<body>
@@ -30,23 +34,24 @@
 		<hr>
 		<div align="center" id="maindiv">
 			<div id="formdiv">
-				<form enctype="multipart/form-data" action="" method="post">
-					Upload Image for Captioning
-					<br>
-					<div id="filediv"><input name="file[]" type="file" id="file"/></div>
-					<br>
-					<button type="button" id="add_more" class="btn btn-info">
-						<span class="glyphicon glyphicon-plus"></span>
-						Add More Files
-					</button>
-					<!-- input type="submit" value="Upload File" name="submit" id="upload" class="btn btn-info" /> -->
-					<button type="submit" id="upload" class="btn btn-info" name="submit">
-						<span class="glyphicon glyphicon-upload"></span>
-						Upload
-					</button>
-				</form>
-				<!--- Including PHP Script here ------>
-				<?php include "upload.php"; ?>
+        <div class="alert alert-success alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Success!</strong> Image Uploaded Successfully!.
+        </div>
+        <?php
+          $dir = "uploads/";
+          $files = scandir($dir);
+          foreach($files as $file) {
+            if(is_file($dir . $file)) {
+              echo "<img src='$dir$file' id='image_upload'>";
+          }
+        }
+        ?>
+        <br>
+        <a href="evaluate.php" class="btn btn-info">
+          <span class="glyphicon glyphicon-upload"></span>
+          Caption
+        </a>
 			</div>
 		</div>
 	</body>
